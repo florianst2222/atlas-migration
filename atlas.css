@@ -143,9 +143,9 @@ body { margin: 0; background: #fff; }
 :where(#atlas-migration) button:focus-visible, :where(#atlas-migration) input:focus-visible { outline: 3px solid rgba(10,61,143,.45); outline-offset: 2px; }
 
 @media (max-width: 760px) {
-  #atlas-migration { padding: 16px 16px 32px; }
-  .am-mapwrap { margin: 0 -16px; border-radius: 0; padding: 10px 8px; }
-  .am-mapbox { aspect-ratio: 1.55 / 1; }
+  #atlas-migration { padding: 16px 0 32px; }
+  .am-mapwrap { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); border-radius: 0; padding: 10px 8px; }
+  .am-mapbox { aspect-ratio: 1.55 / 1; width: 100%; min-height: 0; }
   .am-kpis { grid-template-columns: 1fr 1fr; }
   .am-cols, .am-lists { grid-template-columns: 1fr; }
   .am-card { padding: 16px; }

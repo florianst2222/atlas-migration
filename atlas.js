@@ -532,8 +532,9 @@
     buildMap(decode(res[1]));
     paint();
     lists();
-    var m = /gemeinde=(\d{5})/.exec(location.hash);
-    if (m && G[m[1]]) select(m[1], { zoom: true });
+    var fromHash = function () { var m = /gemeinde=(\d{5})/.exec(location.hash); if (m && G[m[1]] && m[1] !== state.sel) select(m[1], { zoom: true }); };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
   }).catch(function (e) {
     $('#am-loading').textContent = 'Die Daten konnten nicht geladen werden.';
     if (window.console) console.error(e);
