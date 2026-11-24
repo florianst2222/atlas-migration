@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Österreich-Atlas Migration</title>
+<link rel="stylesheet" href="atlas.css">
+</head>
+<body>
+<div id="atlas-migration" class="am">
+  <header class="am-head">
+    <h1 class="am-title">Wie hat sich deine Gemeinde verändert?</h1>
+    <p class="am-lead" id="am-lead">Anteil der Einwohner ohne österreichische Staatsbürgerschaft in allen 2.114 Gemeinden und Wiener Bezirken, von 2012 bis 2026.</p>
+  </header>
+
+  <div class="am-search" role="search">
+    <label for="am-q" class="am-sr">Gemeinde suchen</label>
+    <svg class="am-search-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <input id="am-q" type="search" autocomplete="off" placeholder="Deine Gemeinde oder dein Wiener Bezirk …" aria-autocomplete="list" aria-controls="am-sugg" aria-expanded="false">
+    <ul id="am-sugg" class="am-sugg" role="listbox" hidden></ul>
+  </div>
+
+  <div class="am-controls">
+    <div class="am-seg" role="tablist" aria-label="Kennzahl">
+      <button role="tab" data-m="share" aria-selected="true">Ausländeranteil</button>
+      <button role="tab" data-m="delta" aria-selected="false">Anstieg seit 2012</button>
+      <button role="tab" data-m="dritt" aria-selected="false">Drittstaaten</button>
+      <button role="tab" data-m="born" aria-selected="false">Im Ausland geboren</button>
+    </div>
+  </div>
+
+  <div class="am-mapwrap">
+    <div class="am-mapbox" id="am-mapbox">
+      <svg id="am-map" class="am-map" role="img" aria-label="Karte der österreichischen Gemeinden"></svg>
+      <div class="am-zoom">
+        <button type="button" data-z="in" aria-label="Hineinzoomen">+</button>
+        <button type="button" data-z="out" aria-label="Herauszoomen">−</button>
+        <button type="button" data-z="reset" aria-label="Ganze Karte zeigen">⤢</button>
+      </div>
+      <div class="am-tip" id="am-tip" hidden></div>
+      <div class="am-yearbadge" id="am-yearbadge" aria-hidden="true"></div>
+      <div class="am-loading" id="am-loading">Karte wird geladen …</div>
+    </div>
+    <div class="am-legend" id="am-legend"></div>
+    <div class="am-time" id="am-time">
+      <button type="button" id="am-play" class="am-play" aria-label="Zeitraffer abspielen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path id="am-play-ic" d="M8 5v14l11-7z" fill="currentColor"/></svg>
+      </button>
+      <input type="range" id="am-year" min="0" max="13" step="1" value="13" aria-label="Jahr">
+      <output id="am-year-out" for="am-year">2026</output>
+    </div>
+  </div>
+
+  <section class="am-card" id="am-card" aria-live="polite" hidden></section>
+
+  <section class="am-lists">
+    <div class="am-list">
+      <h2>Höchster Ausländeranteil 2026</h2>
+      <ol id="am-top"></ol>
+    </div>
+    <div class="am-list">
+      <h2>Stärkster Anstieg seit 2012</h2>
+      <ol id="am-rise"></ol>
+    </div>
+    <div class="am-list">
+      <h2>Höchster Drittstaaten-Anteil 2026</h2>
+      <ol id="am-dritt"></ol>
+    </div>
+  </section>
+  <p class="am-note" id="am-listnote">Gemeinden ab 1.000 Einwohnern.</p>
+
+  <details class="am-method">
+    <summary>Quellen und Methodik</summary>
+    <div>
+      <p><strong>Ausländeranteil</strong> = Anteil der Einwohner mit Hauptwohnsitz in der Gemeinde, die nicht die österreichische Staatsbürgerschaft besitzen.</p>
+      <p><strong>2012–2024:</strong> Statistik Austria, Abgestimmte Erwerbsstatistik bzw. Registerzählung 2021, Gemeindeergebnisse, jeweils Stichtag 31.10. <strong>2026:</strong> Statistik Austria, Statistik des Bevölkerungsstandes, Stichtag 01.01.2026 (Staatsangehörigkeit, Geburtsland). <strong>Einwohner 2002:</strong> Statistik Austria, Bevölkerungsstand 01.01.2002 nach heutigem Gebietsstand. <strong>Karte:</strong> Statistik Austria, Gemeindegrenzen 01.01.2026 (vereinfacht).</p>
+      <p>Alle Werte sind auf den Gebietsstand 2026 umgerechnet. Gemeinden, die seit 2012 zusammengelegt wurden (v. a. steirische Gemeindestrukturreform 2015), sind für frühere Jahre aus ihren Vorgängergemeinden zusammengezählt. Prozentwerte vor 2024 sind teils auf eine Kommastelle gerundet veröffentlicht; daraus berechnete Personenzahlen können um wenige Personen abweichen.</p>
+      <p><strong>Drittstaaten</strong> = Staatsangehörige von Ländern außerhalb von EU, EFTA und Vereinigtem Königreich (Abgrenzung von Statistik Austria).</p>
+      <p>Daten zu Asylquartieren bzw. Grundversorgung werden von Bund und Ländern nicht auf Gemeindeebene veröffentlicht und sind daher nicht enthalten.</p>
+      <p class="am-stand" id="am-stand"></p>
+    </div>
+  </details>
+</div>
+<script src="atlas.js" defer></script>
+</body>
+</html>
