@@ -158,6 +158,14 @@
     legend(m);
     var off = !!m.fixed;
     $('#am-time').classList.toggle('off', off);
+    var note = $('#am-timenote');
+    if (!note) {
+      note = document.createElement('p'); note.id = 'am-timenote'; note.className = 'am-timenote';
+      note.textContent = 'Stand 1. Jänner 2026. Nach Herkunft veröffentlicht Statistik Austria Gemeindezahlen nur für das aktuelle Jahr, daher gibt es hier keinen Zeitraffer. Den Verlauf seit 2012 zeigen die Reiter „Ausländeranteil“ und „Anstieg seit 2012“.';
+      $('#am-time').appendChild(note);
+    }
+    note.hidden = !off;
+    if (off) stop();
     $('#am-yearbadge').textContent = off ? '2026' : String(YEARS[k]);
     $('#am-year-out').textContent = off ? '2026' : String(YEARS[k]);
   }
