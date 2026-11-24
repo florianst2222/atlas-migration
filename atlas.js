@@ -2,7 +2,8 @@
 (function () {
   'use strict';
   var root = document.getElementById('atlas-migration');
-  if (!root) return;
+  if (!root || root.getAttribute('data-ready')) return;
+  root.setAttribute('data-ready', '1');
   var BASE = root.getAttribute('data-base') || '';
   var SVGNS = 'http://www.w3.org/2000/svg';
   var $ = function (s) { return root.querySelector(s); };
